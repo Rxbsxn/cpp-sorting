@@ -44,14 +44,41 @@ void insert_sort(unsigned  long int n, float * a)
   }
 }
 
+void chooseSortMethod(int k, long int m, float *a) {
+  clock_t tp, tk;
+  double tc;
+  switch (k)
+  {
+  case 1:
+  {
+    cout << "Babelkowa" << endl;
+    tp = clock();
+    bubbleSort(m, a);
+    tk = clock();
+    tc = (tk - tp) / double(CLOCKS_PER_SEC);
+    cout << "czas sortowania" << tc << endl;
+    break;
+  }
+  case 2:
+  {
+    cout << "Przez wstawianie" << endl;
+    tp = clock();
+    insert_sort(m, a);
+    tk = clock();
+    tc = (tk - tp) / double(CLOCKS_PER_SEC);
+    cout << "czas sortowania" << tc << endl;
+    break;
+  }
+  case 0: break;
+  }
+}
+
 int main()
 {
   unsigned long int m;
   int k;
   float *a = new float[n];
   time_t t;
-  clock_t tp, tk;
-  double tc;
   srand((unsigned)time(&t));
   do {
     cout << "Podaj liczbe liczb w ciagu" << endl;
@@ -65,31 +92,8 @@ int main()
     }
     cout << endl;
 
+    chooseSortMethod(k, m, a);
 
-    switch (k)
-    {
-    case 1:
-    {
-      cout << "Babelkowa" << endl;
-      tp = clock();
-      bubbleSort(m, a);
-      tk = clock();
-      tc = (tk - tp) / double(CLOCKS_PER_SEC);
-      cout << "czas sortowania" << tc << endl;
-      break;
-    }
-    case 2:
-    {
-      cout << "Przez wstawianie" << endl;
-      tp = clock();
-      insert_sort(m, a);
-      tk = clock();
-      tc = (tk - tp) / double(CLOCKS_PER_SEC);
-      cout << "czas sortowania" << tc << endl;
-      break;
-    }
-    case 0: break;
-    }
     cout << "ciag posortowany" << endl;
     for (unsigned long int i = 1; i <= m; i++) {
       cout << a[i] << endl;
