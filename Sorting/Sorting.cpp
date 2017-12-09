@@ -47,6 +47,7 @@ void insert_sort(unsigned  long int n, float * a)
 void chooseSortMethod(int k, long int m, float *a) {
   clock_t tp, tk;
   double tc;
+
   switch (k)
   {
   case 1:
